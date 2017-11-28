@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-
+import getCatfish from './getCatfish';
 
 
 const rootReducer = combineReducers({
-
+  getCatfish
 
 })
 
