@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getCatfish } from '../actions/getCatfish';
-import { getChannelCats } from '../reducers/getCatfish';
+import { getAnyCat } from '../reducers/getCatfish';
 import ChannelCatTable from '../components/ChannelCatTable'
 
 class Catfish extends Component {
@@ -13,12 +13,14 @@ class Catfish extends Component {
 
 
   render () {
-    let { getChannelCats } = this.props
+    let { getChannelCats, getFlatheads, getBlueCats } = this.props
 
     if(this.props.getChannelCats.length > 0){
       return (
         <div>
-          <ChannelCatTable channelCats={getChannelCats}/>
+          <ChannelCatTable channelCats={getChannelCats} title="Channel Cats"/>
+          <ChannelCatTable channelCats={getFlatheads} title="Flatheads"/>
+          <ChannelCatTable channelCats={getBlueCats} title="Blue Catfish"/>
         </div>
       )
     } else {
@@ -30,8 +32,9 @@ class Catfish extends Component {
 
 function mapStateToProps(state, props){
   return {
-    getCatfish: state.getCatfish,
-    getChannelCats: getChannelCats(state)
+    getFlatheads: getAnyCat(state, "flathead"),
+    getChannelCats: getAnyCat(state, "channel"),
+    getBlueCats: getAnyCat(state, "blue")
   }
 }
 

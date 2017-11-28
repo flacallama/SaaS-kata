@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 
 const styles = theme => ({
@@ -17,12 +18,13 @@ const styles = theme => ({
 
 
 function ChannelCatTable(props) {
-  const { classes, channelCats } = props;
+  const { classes, channelCats, title } = props;
 
   if(channelCats){
     return (
 
       <Paper className={classes.root}>
+        <Typography type="title">{title}</Typography>
         <Table className={classes.table}>
         <TableHead>
           <TableRow>

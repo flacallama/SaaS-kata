@@ -6,8 +6,6 @@ export const getCatfish = (state = initialState, action) => {
     case "GET_CATFISH_PENDING":
       return state;
     case "GET_CATFISH_FULFILLED":
-    // console.log('GET_CATFISH_FULFILLED', action.payload.data);
-
       return [
       ...state, action.payload.data
       ]
@@ -21,15 +19,18 @@ export const getCatfish = (state = initialState, action) => {
 // so that the data received is generated as close to the
 // store as possible. This is a new technique for me - perhaps
 // it needs a little tweaking
-export const getChannelCats = (state) => {
+
+
+
+export const getAnyCat = (state, type) => {
   if(state.getCatfish.length > 0){
-    let channelCats = state.getCatfish[0].filter(cat => cat.species === "channel")
+    let results = state.getCatfish[0].filter(cat => cat.species === type)
 
     // restructuring the data to be used in the table
-    .map(channelCat=> {
+    .map(cat=> {
       return {
-        "angler": channelCat.angler,
-        "weight": getWeight(channelCat.length, channelCat.girth)
+        "angler": cat.angler,
+        "weight": getWeight(cat.length, cat.girth)
       }
     })
 
@@ -37,9 +38,9 @@ export const getChannelCats = (state) => {
     .sort((a,b) => b.weight - a.weight)
 
 
-    // only return the first five result (5 largest catches)
+    // only return the first five results (5 largest catches)
     .slice(0, 5);
-    return channelCats;
+    return results;
   }
 
   return state;
