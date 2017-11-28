@@ -25,21 +25,29 @@ export const getChannelCats = (state) => {
   if(state.getCatfish.length > 0){
     let channelCats = state.getCatfish[0].filter(cat => {
       if(cat.species === "channel"){
-        return cat;
+        return true;
+      } else {
+        return false;
       }
     })
     // sort array of fish by weight
-    .sort(function(a,b){
-      return getWeight(b.length, b.girth) - getWeight(a.length, a.girth);
-    })
+    // .sort(function(a,b){
+    //   return getWeight(b.length, b.girth) - getWeight(a.length, a.girth);
+    // })
     // restructuring the data to be used in the table
-    .map((channelCat, i)=> {
+    .map(channelCat=> {
       return {
-        "ranking": i,
         "angler": channelCat.angler,
         "weight": getWeight(channelCat.length, channelCat.girth)
       }
     })
+    .sort(function(a,b){
+      return b.weight - a.weight;
+    })
+
+
+
+
     // only return the first five result (5 largest catches)
     .slice(0, 5)
     return channelCats

@@ -32,10 +32,10 @@ function ChannelCatTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-        {channelCats.map(cat => {
+        {channelCats.map((cat, i)=> {
           return (
-            <TableRow key={cat.ranking}>
-              <TableCell>{cat.ranking + 1}</TableCell>
+            <TableRow key={i}>
+              <TableCell>{i + 1}</TableCell>
               <TableCell>{cat.angler}</TableCell>
               <TableCell>{cat.weight}</TableCell>
             </TableRow>
