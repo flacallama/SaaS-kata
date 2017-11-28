@@ -1,36 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getCatfish } from '../actions/getCatfish'
-import { getChannelCats } from '../reducers/getCatfish'
+import { getCatfish } from '../actions/getCatfish';
+import { getChannelCats } from '../reducers/getCatfish';
+import ChannelCatTable from '../components/ChannelCatTable'
 
 class Catfish extends Component {
-  constructor() {
-    super();
-    // this.getWeight = this.getWeight.bind(this)
-  }
 
   componentWillMount(){
     this.props.getCatfishAction()
   }
 
-  // getWeight(len, gir){
-  //   console.log('getting weight in container');
-  //   return Math.round(len * gir * (gir/800))
-  // }
 
   render () {
+    let { getChannelCats } = this.props
 
-
-    console.log('from reducer. getChannelCats', this.props.getChannelCats);
-
-
-        return (
-          <div>
-
-            catfish
-          </div>
-        )
+    if(this.props.getChannelCats.length > 0){
+      return (
+        <div>
+          <ChannelCatTable channelCats={getChannelCats}/>
+        </div>
+      )
+    } else {
+      return <div>loading... </div>
+    }
 
   }
 }

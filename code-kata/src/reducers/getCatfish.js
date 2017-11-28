@@ -40,6 +40,8 @@ export const getChannelCats = (state) => {
         "weight": getWeight(channelCat.length, channelCat.girth)
       }
     })
+    // only return the first five result (5 largest catches)
+    .slice(0, 5)
     return channelCats
   }
 
@@ -50,5 +52,5 @@ export const getChannelCats = (state) => {
 // here's the function called within the getChannelCats.sort
 // to sort the fish array by weight
 function getWeight(len, gir){
-  return Math.round(len * gir * (gir/800))
+  return Math.round(len * gir * gir / 800)
 }
