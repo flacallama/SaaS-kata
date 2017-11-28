@@ -23,17 +23,8 @@ export const getCatfish = (state = initialState, action) => {
 // it needs a little tweaking
 export const getChannelCats = (state) => {
   if(state.getCatfish.length > 0){
-    let channelCats = state.getCatfish[0].filter(cat => {
-      if(cat.species === "channel"){
-        return true;
-      } else {
-        return false;
-      }
-    })
-    // sort array of fish by weight
-    // .sort(function(a,b){
-    //   return getWeight(b.length, b.girth) - getWeight(a.length, a.girth);
-    // })
+    let channelCats = state.getCatfish[0].filter(cat => cat.species === "channel")
+
     // restructuring the data to be used in the table
     .map(channelCat=> {
       return {
@@ -41,24 +32,20 @@ export const getChannelCats = (state) => {
         "weight": getWeight(channelCat.length, channelCat.girth)
       }
     })
-    .sort(function(a,b){
-      return b.weight - a.weight;
-    })
 
-
+    // sort the cats by weight
+    .sort((a,b) => b.weight - a.weight)
 
 
     // only return the first five result (5 largest catches)
-    .slice(0, 5)
-    return channelCats
+    .slice(0, 5);
+    return channelCats;
   }
 
-  return state
+  return state;
 }
 
 
 // here's the function called within the getChannelCats.sort
 // to sort the fish array by weight
-function getWeight(len, gir){
-  return Math.round(len * gir * gir / 800)
-}
+let getWeight = (len, gir) => Math.round(len * gir * gir / 800);
