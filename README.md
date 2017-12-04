@@ -1,1 +1,2 @@
-# SaaS-kata
+# Code fixes for catfish kata
+
