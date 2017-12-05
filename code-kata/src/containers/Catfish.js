@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getCatfish } from '../actions/getCatfish';
-import { getAnyCat } from '../reducers/getCatfish';
+import { getCatfish } from '../actions/catfish-action';
+import { getAnyCat } from '../reducers/catfish-reducer';
 import ChannelCatTable from '../components/ChannelCatTable'
 
 class Catfish extends Component {
