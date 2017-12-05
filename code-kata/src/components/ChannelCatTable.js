@@ -18,9 +18,9 @@ const styles = theme => ({
 
 
 function ChannelCatTable(props) {
-  const { classes, channelCats, title } = props;
+  const { classes, catfish, title } = props;
 
-  if(channelCats){
+  if(catfish){
     return (
 
       <Paper className={classes.root}>
@@ -34,7 +34,7 @@ function ChannelCatTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-        {channelCats.map((cat, i)=> {
+        {catfish.map((cat, i)=> {
           return (
             <TableRow key={i}>
               <TableCell>{i + 1}</TableCell>
